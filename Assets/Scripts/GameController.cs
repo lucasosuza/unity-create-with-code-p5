@@ -10,19 +10,30 @@ public class GameController : MonoBehaviour
     public List<GameObject> targets;
     private int spawnRate = 1;
     public TextMeshProUGUI scoreText;
-    public int score = 0;
+    public int score;
 
     public TextMeshProUGUI gameOverText;
     public Button restartButton;
 
     public bool isGameActive = true;
 
+    public GameObject titleScreen;
+
     // Start is called before the first frame update
     void Start()
     {
+
+    }
+
+    public void StartGame(int difficulty)
+    {
         StartCoroutine(SpawnTargets());
+        score = 0;
+        spawnRate /= difficulty;
         UpdateScore(0);
+        scoreText.gameObject.SetActive(true);
         isGameActive = true;
+        titleScreen.SetActive(false);
     }
 
     IEnumerator SpawnTargets()
