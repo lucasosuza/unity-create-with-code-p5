@@ -41,7 +41,7 @@ public class Target : MonoBehaviour
     {
         Destroy(gameObject);
         gameController.UpdateScore(pointValue);
-        Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);   
+        Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
     }
 
     private void OnTriggerEnter(Collider other)
