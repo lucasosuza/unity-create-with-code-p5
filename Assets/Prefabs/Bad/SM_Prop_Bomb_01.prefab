@@ -142,3 +142,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointValue: -10
+  explosionParticle: {fileID: 3943670066945774624, guid: 2be4f21d2af0c554f99fc50820522429,
+    type: 3}

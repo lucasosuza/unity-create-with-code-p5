@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class Target : MonoBehaviour
 {
     private const float MIN_SPEED = 12.0f;
-    private const float MAX_SPEED = 16.0f;
+    private const float MAX_SPEED = 20.0f;
     private const int MAX_TORQUE = 10;
     private const int SPAWM_RANGE_X = 4;
     private const int SPAWM_RANGE_Y = -6;
@@ -16,6 +16,8 @@ public class Target : MonoBehaviour
     public int pointValue = 5;
 
     public ParticleSystem explosionParticle;
+
+    public TextMeshProUGUI gameOverText;
 
 
     // Start is called before the first frame update
@@ -39,14 +41,25 @@ public class Target : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Destroy(gameObject);
-        gameController.UpdateScore(pointValue);
-        Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
+        if (gameController.isGameActive)
+        {
+            Destroy(gameObject);
+            gameController.UpdateScore(pointValue);
+            Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
+        }
+
     }
+
+
 
     private void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
+
+        if (!other.CompareTag("Bad"))
+        {
+            gameController.GameOver();
+        }
     }
 
     private static Vector3 RandomSpawnPosition()
